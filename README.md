@@ -28,6 +28,9 @@ After a successful run, you should see:
 - `output/report.txt` (plain text report)
 - `output/app.log` (log file for the run)
 
+# Sample Data
+ You can find sample data array in /Data directory
+
 # Assumptions
 
 - Input is a JSON **array** of objects, each containing:
