@@ -1,0 +1,6 @@
+Total Sales Per Store
+=====================
+
+Store A: 58.97
+Store B: 57.75
+Store C: 55.75

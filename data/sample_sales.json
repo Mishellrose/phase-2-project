@@ -1,0 +1,12 @@
+[
+  {"store": "Store A", "product": "Widget", "price": 9.99, "qty": 3},
+  {"store": "Store A", "product": "Gadget", "price": 14.5, "qty": 2},
+  {"store": "Store B", "product": "Widget", "price": 10.25, "qty": 1},
+  {"store": "Store B", "product": "Thing", "price": 4.75, "qty": 10},
+  {"store": "Store C", "product": "Widget", "price": 8.0, "qty": 5},
+  {"store": "Store C", "product": "Gizmo", "price": 2.25, "qty": 7},
+
+  {"store": "Store A", "product": "BrokenPrice", "price": null, "qty": 1},
+  {"store": "Store B", "product": "BrokenQty", "price": 3.5, "qty": null},
+  {"store": "Store C", "product": "MissingPriceField", "qty": 2}
+]

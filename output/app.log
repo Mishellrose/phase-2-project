@@ -1,0 +1,20 @@
+2026-04-07 18:32:54 | INFO | __main__ | Starting pipeline
+2026-04-07 18:32:54 | INFO | sales_platform.ingestion | File loaded: data/sample_sales.json (records=9)
+2026-04-07 18:32:54 | WARNING | sales_platform.processing | Rejected record (price is null): {'store': 'Store A', 'product': 'BrokenPrice', 'price': None, 'qty': 1}
+2026-04-07 18:32:54 | WARNING | sales_platform.processing | Rejected record (qty is null): {'store': 'Store B', 'product': 'BrokenQty', 'price': 3.5, 'qty': None}
+2026-04-07 18:32:54 | WARNING | sales_platform.processing | Rejected record (missing price): {'store': 'Store C', 'product': 'MissingPriceField', 'qty': 2}
+2026-04-07 18:32:54 | INFO | sales_platform.processing | Records processed: valid=6 rejected=3
+2026-04-07 18:32:54 | INFO | sales_platform.processing | Unique stores extracted: 3
+2026-04-07 18:32:54 | INFO | sales_platform.db | DB insert complete: inserted=6
+2026-04-07 18:32:54 | INFO | sales_platform.reporting | Report saved: output/report.txt
+2026-04-07 18:32:54 | INFO | __main__ | Pipeline complete
+2026-04-07 18:45:01 | INFO | __main__ | Starting pipeline
+2026-04-07 18:45:01 | INFO | sales_platform.ingestion | File loaded: data/sample_sales.json (records=9)
+2026-04-07 18:45:01 | WARNING | sales_platform.processing | Rejected record (price is null): {'store': 'Store A', 'product': 'BrokenPrice', 'price': None, 'qty': 1}
+2026-04-07 18:45:01 | WARNING | sales_platform.processing | Rejected record (qty is null): {'store': 'Store B', 'product': 'BrokenQty', 'price': 3.5, 'qty': None}
+2026-04-07 18:45:01 | WARNING | sales_platform.processing | Rejected record (missing price): {'store': 'Store C', 'product': 'MissingPriceField', 'qty': 2}
+2026-04-07 18:45:01 | INFO | sales_platform.processing | Records processed: valid=6 rejected=3
+2026-04-07 18:45:01 | INFO | sales_platform.processing | Unique stores extracted: 3
+2026-04-07 18:45:01 | INFO | sales_platform.db | DB insert complete: inserted=6
+2026-04-07 18:45:01 | INFO | sales_platform.reporting | Report saved: output/report.txt
+2026-04-07 18:45:01 | INFO | __main__ | Pipeline complete
