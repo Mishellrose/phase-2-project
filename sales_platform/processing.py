@@ -2,9 +2,9 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from decimal import Decimal, InvalidOperation
-from typing import Any, Dict, List, Tuple
+from typing import Any, List
 
-from sales_platform.ingestion import IngestionError, load_sales_json
+from sales_platform.ingestion import load_sales_json
 from sales_platform.logging_config import get_logger
 
 logger = get_logger(__name__)
@@ -39,14 +39,11 @@ class DataProcessor:
         if isinstance(value, bool):
             raise ValueError("qty must be an integer, not boolean")
         try:
-            qty = int(value)
+            return int(value)
         except (TypeError, ValueError) as e:
             raise ValueError(f"qty is not an integer: {value!r}") from e
-        return qty
 
-    def validate_and_transform(
-        self, records: List[dict[str, Any]]
-    ) -> Tuple[List[dict[str, Any]], List[RejectedRecord]]:
+    def validate_and_transform(self, records: List[dict[str, Any]]) -> List[dict[str, Any]]:
         valid: List[dict[str, Any]] = []
         rejected: List[RejectedRecord] = []
 
@@ -66,43 +63,33 @@ class DataProcessor:
                 continue
 
             total_sale = price * Decimal(qty)
-            transformed = dict(record)
-            transformed["price"] = float(price)
-            transformed["qty"] = qty
-            transformed["total_sale"] = float(total_sale)
+
+            transformed = {
+                "store": str(record.get("store")),
+                "product": str(record.get("product")),
+                "price": float(price),
+                "quantity": qty,
+                "total_sale": float(total_sale),
+            }
+
             valid.append(transformed)
 
-        logger.info(
-            "Records processed: valid=%s rejected=%s", len(valid), len(rejected)
-        )
-        return valid, rejected
-
-    def unique_stores(self, valid_records: List[dict[str, Any]]) -> List[str]:
-        stores = {str(r.get("store")) for r in valid_records if r.get("store") is not None}
-        result = sorted(stores)
-        logger.info("Unique stores extracted: %s", len(result))
-        return result
-
-    def aggregate_by_store(self, valid_records: List[dict[str, Any]]) -> Dict[str, float]:
-        totals: Dict[str, float] = {}
-        for r in valid_records:
-            store = str(r.get("store"))
-            totals[store] = totals.get(store, 0.0) + float(r.get("total_sale", 0.0))
-        return totals
-
-    def aggregate_by_product(self, valid_records: List[dict[str, Any]]) -> Dict[str, float]:
-        totals: Dict[str, float] = {}
-        for r in valid_records:
-            product = str(r.get("product"))
-            totals[product] = totals.get(product, 0.0) + float(r.get("total_sale", 0.0))
-        return totals
-
-    def run(self) -> List[dict[str, Any]]:
-        ingestion = load_sales_json(self.input_file_path)
-        valid, rejected = self.validate_and_transform(ingestion.records)
         self.last_rejected = rejected
-        self.unique_stores(valid)
-        self.aggregate_by_store(valid)
-        self.aggregate_by_product(valid)
+
+        logger.info(
+            "Records processed: valid=%s rejected=%s",
+            len(valid),
+            len(rejected),
+        )
+
         return valid
 
+    def run(self) -> List[dict[str, Any]]:
+        # Step 1: Load data
+        records = load_sales_json(self.input_file_path)
+
+        # Step 2: Validate + transform
+        valid_records = self.validate_and_transform(records)
+
+        # ONLY return valid records (as per senior requirement)
+        return valid_records

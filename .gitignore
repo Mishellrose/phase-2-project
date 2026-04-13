@@ -1,3 +1,10 @@
 
 __pycache__
 sales.db
+.pytest_cache/
+.mypy_cache/
+output/
+sales.db
+_pycache_
+*.pyc
+.venv/

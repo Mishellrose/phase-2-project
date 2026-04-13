@@ -15,10 +15,12 @@ def configure_logging(*, log_level: str, log_path: str) -> None:
     _ensure_parent_dir(log_path)
 
     root = logging.getLogger()
-    root.setLevel(getattr(logging, log_level, logging.INFO))
 
-    for handler in list(root.handlers):
-        root.removeHandler(handler)
+    # جلوگیری duplicate config
+    if root.handlers:
+        return
+
+    root.setLevel(getattr(logging, log_level, logging.INFO))
 
     formatter = logging.Formatter(
         fmt="%(asctime)s | %(levelname)s | %(name)s | %(message)s",
