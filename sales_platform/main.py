@@ -12,11 +12,11 @@ app = FastAPI()
 
 logger = get_logger(__name__)
 
-# Load config + setup once
+
 cfg = load_config()
 configure_logging(log_level=cfg.log_level, log_path=cfg.log_path)
 
-# Create DB engine once
+
 engine = create_db_engine(cfg.db_url)
 create_tables(engine)
 
@@ -25,13 +25,7 @@ create_tables(engine)
 
 @app.post("/process")
 def process_data() -> Dict:
-    """
-    Runs full pipeline:
-    - Load file
-    - Validate + transform
-    - Insert into DB
-    - Generate report
-    """
+    
 
     processor = DataProcessor(cfg.input_path)
 
@@ -41,10 +35,10 @@ def process_data() -> Dict:
         logger.exception("Ingestion failed")
         raise HTTPException(status_code=400, detail=str(e))
 
-    # Insert into DB (RAW SQL)
+    
     inserted_count = insert_sales(engine, valid_records)
 
-    # Reporting
+   
     store_totals = aggregate_by_store(valid_records)
     write_store_report(store_totals, cfg.output_report_path)
 
@@ -60,9 +54,7 @@ def process_data() -> Dict:
 
 @app.get("/sales/{store_name}")
 def get_sales(store_name: str) -> List[Dict]:
-    """
-    Fetch sales for a specific store
-    """
+  
     from sales_platform.db import fetch_sales_by_store
 
     results = fetch_sales_by_store(engine, store_name)

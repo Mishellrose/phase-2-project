@@ -16,7 +16,6 @@ def configure_logging(*, log_level: str, log_path: str) -> None:
 
     root = logging.getLogger()
 
-    # جلوگیری duplicate config
     if root.handlers:
         return
 

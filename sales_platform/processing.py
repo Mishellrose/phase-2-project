@@ -86,11 +86,11 @@ class DataProcessor:
         return valid
 
     def run(self) -> List[dict[str, Any]]:
-        # Step 1: Load data
+        # Load data
         records = load_sales_json(self.input_file_path)
 
-        # Step 2: Validate + transform
+        # Validate + transform
         valid_records = self.validate_and_transform(records)
 
-        # ONLY return valid records (as per senior requirement)
+       
         return valid_records

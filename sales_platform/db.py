@@ -7,22 +7,22 @@ from sales_platform.logging_config import get_logger
 logger = get_logger(__name__)
 
 
-# 🔹 Create DB engine
+
 def create_db_engine(db_url: str) -> Engine:
     return create_engine(db_url)
 
 
-# 🔹 Create table with UNIQUE constraint (AUTO FIX OLD TABLE)
+
 def create_tables(engine: Engine) -> None:
     with engine.connect() as conn:
 
-        # 🔥 Check if table exists
+       
         table_exists = conn.execute(
             text("SELECT name FROM sqlite_master WHERE type='table' AND name='sales'")
         ).fetchone()
 
         if table_exists:
-            # 🔥 Check indexes (to verify UNIQUE constraint)
+            
             indexes = conn.execute(text("PRAGMA index_list(sales)")).fetchall()
 
             has_unique = any(row[2] for row in indexes)  # row[2] = is_unique (1 or 0)
@@ -31,7 +31,7 @@ def create_tables(engine: Engine) -> None:
                 logger.warning("Old table detected without UNIQUE constraint. Recreating table...")
                 conn.execute(text("DROP TABLE sales"))
 
-        # ✅ Create table (fresh or existing correct)
+        
         conn.execute(text("""
         CREATE TABLE IF NOT EXISTS sales (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -47,7 +47,6 @@ def create_tables(engine: Engine) -> None:
         conn.commit()
 
 
-# 🔹 Insert data using UPSERT (idempotent)
 def insert_sales(engine: Engine, records: List[Dict]) -> int:
     query = """
     INSERT INTO sales (store, product, price, quantity, total_sale)
@@ -65,7 +64,7 @@ def insert_sales(engine: Engine, records: List[Dict]) -> int:
     return inserted_count
 
 
-# 🔹 Fetch sales by store
+
 def fetch_sales_by_store(engine: Engine, store_name: str) -> List[Dict]:
     query = "SELECT * FROM sales WHERE store = :store"
 
