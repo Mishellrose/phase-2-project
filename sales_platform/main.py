@@ -21,9 +21,6 @@ engine = create_db_engine(cfg.db_url)
 create_tables(engine)
 
 
-@app.get("/")
-def root():
-    return {"message": "Sales Data Processing API is running"}
 
 
 @app.post("/process")

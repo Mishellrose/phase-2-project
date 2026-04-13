@@ -1,23 +1,34 @@
-
-2026-04-10 16:58:51 | INFO | __main__ | Starting pipeline
-2026-04-10 16:58:51 | INFO | sales_platform.ingestion | File loaded: data/sample_sales.json (records=9)
-2026-04-10 16:58:51 | WARNING | sales_platform.processing | Rejected record (price is null): {'store': 'Store A', 'product': 'BrokenPrice', 'price': None, 'qty': 1}
-2026-04-10 16:58:51 | WARNING | sales_platform.processing | Rejected record (qty is null): {'store': 'Store B', 'product': 'BrokenQty', 'price': 3.5, 'qty': None}
-2026-04-10 16:58:51 | WARNING | sales_platform.processing | Rejected record (missing price): {'store': 'Store C', 'product': 'MissingPriceField', 'qty': 2}
-2026-04-10 16:58:51 | INFO | sales_platform.processing | Records processed: valid=6 rejected=3
-2026-04-10 16:58:51 | INFO | sales_platform.processing | Unique stores extracted: 3
-2026-04-10 16:58:51 | INFO | sales_platform.db | DB insert complete: inserted=6
-2026-04-10 16:58:51 | INFO | sales_platform.reporting | Report saved: output/report.txt
-2026-04-10 16:58:51 | INFO | __main__ | Pipeline complete
-2026-04-10 20:13:39 | INFO | __main__ | Starting pipeline
-2026-04-10 20:13:39 | INFO | sales_platform.ingestion | File loaded: data/sample_sales.json (records=9)
-2026-04-10 20:13:39 | WARNING | sales_platform.processing | Rejected record (price is null): {'store': 'Store A', 'product': 'BrokenPrice', 'price': None, 'qty': 1}
-2026-04-10 20:13:39 | WARNING | sales_platform.processing | Rejected record (qty is null): {'store': 'Store B', 'product': 'BrokenQty', 'price': 3.5, 'qty': None}
-2026-04-10 20:13:39 | WARNING | sales_platform.processing | Rejected record (missing price): {'store': 'Store C', 'product': 'MissingPriceField', 'qty': 2}
-2026-04-10 20:13:39 | INFO | sales_platform.processing | Records processed: valid=6 rejected=3
-2026-04-10 20:13:39 | INFO | sales_platform.processing | Unique stores extracted: 3
-2026-04-10 20:13:39 | INFO | sales_platform.processing | Unique stores extracted: 3
-2026-04-10 20:13:39 | INFO | __main__ | Aggregations computed: stores=3 store_totals=3 product_totals=4
-2026-04-10 20:13:39 | INFO | sales_platform.db | DB insert complete: inserted=6
-2026-04-10 20:13:39 | INFO | sales_platform.reporting | Report saved: output/report.txt
-2026-04-10 20:13:39 | INFO | __main__ | Pipeline complete
+2026-04-13 22:05:05 | INFO | sales_platform.ingestion | File loaded: data/sample_sales.json (records=9)
+2026-04-13 22:05:05 | WARNING | sales_platform.processing | Rejected record (price is null): {'store': 'Store A', 'product': 'BrokenPrice', 'price': None, 'qty': 1}
+2026-04-13 22:05:05 | WARNING | sales_platform.processing | Rejected record (qty is null): {'store': 'Store B', 'product': 'BrokenQty', 'price': 3.5, 'qty': None}
+2026-04-13 22:05:05 | WARNING | sales_platform.processing | Rejected record (missing price): {'store': 'Store C', 'product': 'MissingPriceField', 'qty': 2}
+2026-04-13 22:05:05 | INFO | sales_platform.processing | Records processed: valid=6 rejected=3
+2026-04-13 22:06:26 | INFO | sales_platform.ingestion | File loaded: data/sample_sales.json (records=9)
+2026-04-13 22:06:26 | WARNING | sales_platform.processing | Rejected record (price is null): {'store': 'Store A', 'product': 'BrokenPrice', 'price': None, 'qty': 1}
+2026-04-13 22:06:26 | WARNING | sales_platform.processing | Rejected record (qty is null): {'store': 'Store B', 'product': 'BrokenQty', 'price': 3.5, 'qty': None}
+2026-04-13 22:06:26 | WARNING | sales_platform.processing | Rejected record (missing price): {'store': 'Store C', 'product': 'MissingPriceField', 'qty': 2}
+2026-04-13 22:06:26 | INFO | sales_platform.processing | Records processed: valid=6 rejected=3
+2026-04-13 22:09:03 | INFO | sales_platform.ingestion | File loaded: data/sample_sales.json (records=9)
+2026-04-13 22:09:03 | WARNING | sales_platform.processing | Rejected record (price is null): {'store': 'Store A', 'product': 'BrokenPrice', 'price': None, 'qty': 1}
+2026-04-13 22:09:03 | WARNING | sales_platform.processing | Rejected record (qty is null): {'store': 'Store B', 'product': 'BrokenQty', 'price': 3.5, 'qty': None}
+2026-04-13 22:09:03 | WARNING | sales_platform.processing | Rejected record (missing price): {'store': 'Store C', 'product': 'MissingPriceField', 'qty': 2}
+2026-04-13 22:09:03 | INFO | sales_platform.processing | Records processed: valid=6 rejected=3
+2026-04-13 22:09:03 | INFO | sales_platform.db | Inserted records (deduplicated): 6
+2026-04-13 22:09:03 | INFO | sales_platform.reporting | Report saved: output/report.txt
+2026-04-13 22:09:03 | INFO | sales_platform.main | Pipeline complete
+2026-04-13 22:15:36 | INFO | sales_platform.ingestion | File loaded: data/sample_sales.json (records=9)
+2026-04-13 22:15:36 | WARNING | sales_platform.processing | Rejected record (price is null): {'store': 'Store A', 'product': 'BrokenPrice', 'price': None, 'qty': 1}
+2026-04-13 22:15:36 | WARNING | sales_platform.processing | Rejected record (qty is null): {'store': 'Store B', 'product': 'BrokenQty', 'price': 3.5, 'qty': None}
+2026-04-13 22:15:36 | WARNING | sales_platform.processing | Rejected record (missing price): {'store': 'Store C', 'product': 'MissingPriceField', 'qty': 2}
+2026-04-13 22:15:36 | INFO | sales_platform.processing | Records processed: valid=6 rejected=3
+2026-04-13 22:15:36 | INFO | sales_platform.db | Inserted records (deduplicated): 0
+2026-04-13 22:15:36 | INFO | sales_platform.reporting | Report saved: output/report.txt
+2026-04-13 22:15:36 | INFO | sales_platform.main | Pipeline complete
+2026-04-13 22:15:53 | INFO | sales_platform.ingestion | File loaded: data/sample_sales.json (records=9)
+2026-04-13 22:15:53 | WARNING | sales_platform.processing | Rejected record (price is null): {'store': 'Store A', 'product': 'BrokenPrice', 'price': None, 'qty': 1}
+2026-04-13 22:15:53 | WARNING | sales_platform.processing | Rejected record (qty is null): {'store': 'Store B', 'product': 'BrokenQty', 'price': 3.5, 'qty': None}
+2026-04-13 22:15:53 | WARNING | sales_platform.processing | Rejected record (missing price): {'store': 'Store C', 'product': 'MissingPriceField', 'qty': 2}
+2026-04-13 22:15:53 | INFO | sales_platform.processing | Records processed: valid=6 rejected=3
+2026-04-13 22:15:53 | INFO | sales_platform.db | Inserted records (deduplicated): 0
+2026-04-13 22:15:53 | INFO | sales_platform.reporting | Report saved: output/report.txt
+2026-04-13 22:15:53 | INFO | sales_platform.main | Pipeline complete
